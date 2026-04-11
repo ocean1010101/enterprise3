@@ -1,4 +1,4 @@
-*Design Report*
+**Design Report**
 
 **Project Overview / Problem Statement**
 
