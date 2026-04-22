@@ -1,67 +1,76 @@
 "use client";
-import { Search, Info } from "lucide-react";
+import { Search } from "lucide-react";
+import { useState } from "react";
 
 export default function LostAndFound() {
+  const [claimedItems, setClaimedItems] = useState<number[]>([]);
+
   const lostItems = [
-    { item: "Blue Chilly's Water Bottle", location: "Main Library, 2nd Floor", contact: "sarah.fictional@boreal.edu.fake", date: "April 19" },
-    { item: "Casio Scientific Calculator", location: "Bohr Theatre", contact: "085-555-0192", date: "April 20" },
-    { item: "Silver Keys on a Lanyard", location: "The Hub Canteen", contact: "security@boreal.edu.fake", date: "April 21" },
+    { id: 1, item: "Blue Chilly's Water Bottle", location: "Main Library, 2nd Floor", date: "Yesterday" },
+    { id: 2, item: "Casio Scientific Calculator", location: "Bohr Theatre", date: "Monday" },
+    { id: 3, item: "Silver Keys on a Lanyard", location: "The Hub Canteen", date: "Last Week" },
   ];
+
+  const handleClaim = (id: number) => {
+    setClaimedItems([...claimedItems, id]);
+    alert("Claim request sent to security desk. Please visit them in person to verify ownership.");
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6 my-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-blue-900 flex items-center justify-center gap-3">
+        <h1 className="text-4xl font-bold text-sky-800 flex items-center justify-center gap-3">
           <Search size={36} /> Lost & Found
         </h1>
-        <p className="text-xl text-blue-700 mt-2">Reuniting students with their belongings.</p>
+        <p className="text-xl text-slate-600 mt-2">Privacy-first item recovery. No personal data required.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         
         {/* Form Section */}
-        <div className="bg-blue-50 p-8 rounded-xl shadow-md border border-blue-200">
-          <h2 className="text-2xl font-bold text-blue-900 mb-6">Report an Item</h2>
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <div className="bg-sky-50 p-8 rounded-xl shadow-sm border border-sky-100 h-fit">
+          <h2 className="text-2xl font-bold text-sky-800 mb-6">Report a Found Item</h2>
+          <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Item reported! Please drop it off at the security desk."); }}>
             <div>
-              <label htmlFor="name" className="block text-blue-900 font-bold mb-1">Your Fake Name</label>
-              <input type="text" id="name" placeholder="E.g. John Doe" className="w-full p-3 border-2 border-blue-200 rounded-lg text-blue-900 placeholder-blue-400 focus:border-blue-900 focus:ring-2 focus:ring-blue-900 outline-none transition-all" required/>
+              <label htmlFor="itemDetails" className="block text-slate-800 font-bold mb-1">Item Description</label>
+              <input type="text" id="itemDetails" placeholder="E.g. Red Notebook" className="w-full p-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition-all" required/>
             </div>
             <div>
-              <label htmlFor="itemDetails" className="block text-blue-900 font-bold mb-1">Item Description</label>
-              <input type="text" id="itemDetails" placeholder="E.g. Red Notebook" className="w-full p-3 border-2 border-blue-200 rounded-lg text-blue-900 placeholder-blue-400 focus:border-blue-900 focus:ring-2 focus:ring-blue-900 outline-none transition-all" required/>
+              <label htmlFor="location" className="block text-slate-800 font-bold mb-1">Where did you find it?</label>
+              <input type="text" id="location" placeholder="E.g. Turing Hall, Row 3" className="w-full p-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition-all" required/>
             </div>
-            <div>
-              <label htmlFor="status" className="block text-blue-900 font-bold mb-1">Status</label>
-              <select id="status" className="w-full p-3 border-2 border-blue-200 rounded-lg text-blue-900 focus:border-blue-900 focus:ring-2 focus:ring-blue-900 outline-none transition-all cursor-pointer">
-                <option>I lost this item</option>
-                <option>I found this item</option>
-              </select>
-            </div>
-            <button type="submit" className="w-full bg-blue-900 text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-800 transition-all hover:scale-[1.02] active:scale-95 focus:ring-4 focus:ring-blue-400 mt-4">
+            <button type="submit" className="w-full bg-sky-500 text-white font-bold py-3 rounded-lg shadow-sm hover:bg-sky-600 transition-all active:scale-95 focus:ring-4 focus:ring-sky-300 mt-4">
               Submit Report
             </button>
           </form>
         </div>
 
         {/* List Section */}
-        <div className="bg-white p-8 rounded-xl shadow-md border border-blue-100">
-          <h2 className="text-2xl font-bold text-blue-900 mb-6 border-b border-blue-100 pb-2">Currently Reported Items</h2>
+        <div className="bg-white p-8 rounded-xl shadow-sm border border-sky-100">
+          <h2 className="text-2xl font-bold text-sky-800 mb-6 border-b border-sky-100 pb-2">Currently Held at Security</h2>
           <div className="space-y-4">
-            {lostItems.map((entry, i) => (
-              <div key={i} className="p-4 border-l-4 border-blue-900 bg-blue-50/30 rounded-r-lg shadow-sm hover:bg-blue-50 transition-colors">
-                <h3 className="text-lg font-bold text-blue-900">{entry.item}</h3>
-                <div className="mt-2 text-sm text-blue-800 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <p><span className="font-bold">Last Seen:</span> {entry.location}</p>
-                  <p><span className="font-bold">Date:</span> {entry.date}</p>
+            {lostItems.map((entry) => {
+              const isClaimed = claimedItems.includes(entry.id);
+              return (
+                <div key={entry.id} className="p-4 border-l-4 border-sky-500 bg-slate-50 rounded-r-lg shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-800">{entry.item}</h3>
+                    <p className="text-sm text-slate-600 mt-1">Found: {entry.location} • {entry.date}</p>
+                  </div>
+                  <button 
+                    onClick={() => handleClaim(entry.id)}
+                    disabled={isClaimed}
+                    className={`px-4 py-2 rounded font-bold shadow-sm transition-all focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 whitespace-nowrap ${
+                      isClaimed 
+                      ? "bg-slate-300 text-slate-500 cursor-not-allowed" 
+                      : "bg-white border-2 border-sky-500 text-sky-600 hover:bg-sky-50 hover:scale-105 active:scale-95"
+                    }`}
+                  >
+                    {isClaimed ? "Claim Requested" : "Claim Item"}
+                  </button>
                 </div>
-                <div className="mt-3 pt-3 border-t border-blue-100 flex items-center gap-2 text-sm">
-                  <Info size={16} className="text-blue-600"/>
-                  <span className="font-medium text-blue-900">Contact:</span> 
-                  <span className="text-blue-700">{entry.contact}</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
