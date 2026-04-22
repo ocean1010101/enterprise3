@@ -9,7 +9,7 @@ const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Campus Companion",
-  description: "Your guide to campus life at Boreal University",
+  description: "Your guide to campus life with Campus Companion",
 };
 
 export default function RootLayout({
