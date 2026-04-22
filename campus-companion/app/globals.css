@@ -1,23 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif !important;
 }
+
+/* SETTINGS: Midnight Theme (X / Twitter Style) */
+.theme-midnight {
+  background-color: #15202b !important;
+  color: #ffffff !important;
+}
+/* ADDED .bg-sky-100 to this list below! */
+.theme-midnight .bg-white, .theme-midnight .bg-slate-50, .theme-midnight .bg-sky-50, .theme-midnight .bg-sky-100, .theme-midnight .bg-slate-100 {
+  background-color: #192734 !important;
+  color: #ffffff !important;
+  border-color: #38444d !important;
+}
+.theme-midnight .bg-sky-200 {
+  background-color: #15202b !important;
+  border-bottom: 1px solid #38444d;
+}
+.theme-midnight .text-slate-800, .theme-midnight .text-sky-800, .theme-midnight .text-sky-900, .theme-midnight .text-slate-900 {
+  color: #ffffff !important;
+}
+.theme-midnight .text-slate-600, .theme-midnight .text-slate-700, .theme-midnight .text-sky-700 {
+  color: #8899a6 !important;
+}
+.theme-midnight .bg-sky-500, .theme-midnight .bg-sky-800 {
+  background-color: #1d9bf0 !important;
+  color: #ffffff !important;
+}
+
+/* SETTINGS: High Contrast Theme (WCAG Compliant) */
+.theme-contrast {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+/* ADDED .bg-sky-100 to this list below! */
+.theme-contrast .bg-white, .theme-contrast .bg-slate-50, .theme-contrast .bg-sky-50, .theme-contrast .bg-sky-100, .theme-contrast .bg-sky-200, .theme-contrast .bg-slate-100 {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+.theme-contrast .text-slate-800, .theme-contrast .text-sky-800, .theme-contrast .text-sky-900, .theme-contrast .text-slate-900, .theme-contrast .text-slate-600, .theme-contrast .text-slate-700, .theme-contrast .text-sky-700 {
+  color: #ffff00 !important;
+}
+.theme-contrast .bg-sky-500, .theme-contrast .bg-sky-800 {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* Fix hover states in Dark Modes */
+.theme-midnight .hover\:bg-slate-50:hover,
+.theme-midnight .hover\:bg-sky-50:hover,
+.theme-midnight .hover\:bg-sky-300:hover {
+  background-color: #22303c !important; /* A slightly lighter dark-blue for the hover effect */
+  color: #ffffff !important;
+}
+
+.theme-contrast .hover\:bg-slate-50:hover,
+.theme-contrast .hover\:bg-sky-50:hover,
+.theme-contrast .hover\:bg-sky-300:hover {
+  background-color: #222222 !important; /* A dark grey hover for contrast mode */
+  color: #ffff00 !important;
+}
+
+/* Fix the Home Page image overlay in Dark Modes */
+.theme-midnight .bg-white\/85 {
+  background-color: rgba(25, 39, 52, 0.85) !important;
+}
+
+.theme-contrast .bg-white\/85 {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Force Map & Legend colors to show up in Dark Modes */
+.theme-midnight .text-emerald-600, .theme-contrast .text-emerald-600 { color: #34d399 !important; }
+.theme-midnight .text-purple-600, .theme-contrast .text-purple-600 { color: #c084fc !important; }
+.theme-midnight .text-orange-500, .theme-contrast .text-orange-500 { color: #fb923c !important; }
+.theme-midnight .text-sky-600, .theme-contrast .text-sky-600 { color: #38bdf8 !important; }

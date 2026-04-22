@@ -22,7 +22,7 @@ export default function LostAndFound() {
         <h1 className="text-4xl font-bold text-sky-800 flex items-center justify-center gap-3">
           <Search size={36} /> Lost & Found
         </h1>
-        <p className="text-xl text-slate-600 mt-2">Privacy-first item recovery. No personal data required.</p>
+       
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -63,7 +63,7 @@ export default function LostAndFound() {
                     className={`px-4 py-2 rounded font-bold shadow-sm transition-all focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 whitespace-nowrap ${
                       isClaimed 
                       ? "bg-slate-300 text-slate-500 cursor-not-allowed" 
-                      : "bg-white border-2 border-sky-500 text-sky-600 hover:bg-sky-50 hover:scale-105 active:scale-95"
+                      : "bg-sky-500 text-white hover:bg-sky-600 hover:scale-105 active:scale-95"
                     }`}
                   >
                     {isClaimed ? "Claim Requested" : "Claim Item"}
