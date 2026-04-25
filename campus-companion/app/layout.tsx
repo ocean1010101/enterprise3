@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { Map, Calendar, Coffee, LifeBuoy, Search, Settings } from "lucide-react";
+import { Map, Calendar, Coffee, LifeBuoy, Search, Settings, Ticket } from "lucide-react";
 import { SettingsProvider } from "./SettingsProvider";
 
 const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
@@ -27,7 +27,6 @@ export default function RootLayout({
 
           <nav className="bg-sky-200 text-slate-900 p-4 shadow-sm sticky top-0 z-50 transition-colors duration-300">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-              {/* Increased Text Size for Header to text-4xl */}
               <Link href="/" className="text-4xl font-extrabold tracking-wide focus:ring-2 focus:ring-slate-900 rounded px-2">
                 Campus Companion
               </Link>
@@ -46,6 +45,9 @@ export default function RootLayout({
                 </Link>
                 <Link href="/lost-found" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
                   <Search size={18} aria-hidden="true" /> <span className="hidden lg:inline">Lost & Found</span>
+                </Link>
+                <Link href="/events" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                  <Ticket size={18} aria-hidden="true" /> <span className="hidden lg:inline">Events</span>
                 </Link>
                 <Link href="/settings" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
                   <Settings size={18} aria-hidden="true" /> <span className="hidden lg:inline">Settings</span>
@@ -66,13 +68,13 @@ export default function RootLayout({
                 <p>Phone: +353 (0)1 555 0199</p>
               </div>
               <div>
-                {/* Removed "(Quick Links)" as requested */}
                 <h3 className="font-bold text-lg mb-4 text-slate-900">Site Map</h3>
                 <ul className="grid grid-cols-2 gap-2">
                   <li><Link href="/" className="hover:underline focus:ring-2 rounded outline-none">Home</Link></li>
                   <li><Link href="/timetable" className="hover:underline focus:ring-2 rounded outline-none">Timetable</Link></li>
                   <li><Link href="/canteen" className="hover:underline focus:ring-2 rounded outline-none">Canteen</Link></li>
                   <li><Link href="/map" className="hover:underline focus:ring-2 rounded outline-none">Campus Map</Link></li>
+                  <li><Link href="/events" className="hover:underline focus:ring-2 rounded outline-none">Events</Link></li>
                   <li><Link href="/settings" className="hover:underline focus:ring-2 rounded outline-none">Settings</Link></li>
                 </ul>
               </div>

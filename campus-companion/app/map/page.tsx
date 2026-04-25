@@ -9,20 +9,15 @@ export default function CampusMap() {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
-  // Slider Zoom
   const handleZoom = (e: React.ChangeEvent<HTMLInputElement>) => {
     setScale(parseFloat(e.target.value));
   };
 
-  // NEW: Mouse Scroll Wheel Zoom
   const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
-    // Prevent the page from scrolling down if possible
     const zoomSpeed = 0.1;
     if (e.deltaY < 0) {
-      // Scrolling UP zooms IN (Max 2.5x)
       setScale((prev) => Math.min(prev + zoomSpeed, 2.5));
     } else {
-      // Scrolling DOWN zooms OUT (Min 0.5x)
       setScale((prev) => Math.max(prev - zoomSpeed, 0.5));
     }
   };
@@ -50,12 +45,13 @@ export default function CampusMap() {
     { name: "Turing Hall", top: "60%", left: "20%", color: "text-sky-600" },
     { name: "Main Library", top: "50%", left: "75%", color: "text-purple-600" },
     { name: "Student Canteen", top: "75%", left: "70%", color: "text-orange-500" },
+    { name: "Sports Pitch", top: "20%", left: "75%", color: "text-green-600" }, // NEW LOCATION
   ];
 
   return (
     <div className="max-w-7xl mx-auto p-6 my-8">
       <h1 className="text-4xl font-bold text-sky-800 mb-2">Campus Map</h1>
-      <p className="text-slate-600 mb-6">Drag to move. Use the slider or your mouse wheel to zoom.</p>
+      <p className="text-slate-600 mb-6">Drag to move. Click map pins to highlight. Use the slider or mouse wheel to zoom.</p>
 
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Map Container */}
@@ -65,7 +61,7 @@ export default function CampusMap() {
           onMouseMove={onDrag}
           onMouseUp={stopDrag}
           onMouseLeave={stopDrag}
-          onWheel={handleWheel} /* Added the wheel listener here! */
+          onWheel={handleWheel}
           ref={mapContainerRef}
         >
           <div 
@@ -88,17 +84,24 @@ export default function CampusMap() {
               <rect x="15%" y="55%" width="20%" height="20%" fill="none" stroke="#0ea5e9" strokeWidth="3" />
               <rect x="65%" y="45%" width="25%" height="40%" fill="none" stroke="#0ea5e9" strokeWidth="3" />
               <path d="M 45% 85% L 55% 85% L 55% 95% L 45% 95% Z" fill="none" stroke="#0ea5e9" strokeWidth="4" />
+              {/* Added a box for the Sports Pitch */}
+              <rect x="65%" y="15%" width="25%" height="15%" fill="none" stroke="#16a34a" strokeWidth="3" strokeDasharray="5,5" /> 
             </svg>
 
+            {/* THE CLICKABLE BUTTON FIX IS HERE */}
             {locations.map((loc, i) => (
-              <div key={i} className="absolute flex flex-col items-center group" style={{ top: loc.top, left: loc.left }}>
+              <button 
+                key={i} 
+                className="absolute flex flex-col items-center group p-1 rounded-lg transition-transform active:scale-90 focus:outline-none focus:ring-4 focus:ring-sky-300 focus:bg-sky-50 cursor-pointer" 
+                style={{ top: loc.top, left: loc.left }}
+              >
                 <div className={`bg-white p-0.5 rounded-full shadow-md border border-slate-100 ${loc.color}`}>
                    <MapPin size={20} fill="currentColor" className="text-white" />
                 </div>
                 <span className={`mt-1 bg-white font-bold px-2 py-1 rounded shadow-sm text-xs border border-slate-200 pointer-events-none ${loc.color}`}>
                   {loc.name}
                 </span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -110,14 +113,8 @@ export default function CampusMap() {
               <ZoomIn size={24} /> Zoom Controls
             </h2>
             <input 
-              type="range" 
-              min="0.5" 
-              max="2.5" 
-              step="0.1" 
-              value={scale} 
-              onChange={handleZoom}
+              type="range" min="0.5" max="2.5" step="0.1" value={scale} onChange={handleZoom}
               className="w-full accent-sky-600 h-2 bg-sky-200 rounded-lg appearance-none cursor-pointer"
-              aria-label="Zoom Map"
             />
             <div className="flex justify-between text-sm text-slate-500 mt-2">
               <ZoomOut size={16} /> <ZoomIn size={16} />
@@ -138,6 +135,7 @@ export default function CampusMap() {
               <li className="flex items-center gap-3"><MapPin className="text-sky-600" fill="currentColor" size={20}/> <span className="text-slate-700 font-medium">Lecture Halls</span></li>
               <li className="flex items-center gap-3"><MapPin className="text-purple-600" fill="currentColor" size={20}/> <span className="text-slate-700 font-medium">Library / Study</span></li>
               <li className="flex items-center gap-3"><MapPin className="text-orange-500" fill="currentColor" size={20}/> <span className="text-slate-700 font-medium">Food & Dining</span></li>
+              <li className="flex items-center gap-3"><MapPin className="text-green-600" fill="currentColor" size={20}/> <span className="text-slate-700 font-medium">Sports Pitch</span></li>
             </ul>
           </div>
         </div>

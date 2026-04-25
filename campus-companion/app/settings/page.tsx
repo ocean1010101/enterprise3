@@ -26,7 +26,7 @@ export default function SettingsPage() {
               <input type="radio" name="theme" value="light" checked={theme === "light"} onChange={() => setTheme("light")} className="w-5 h-5 accent-sky-600" />
             </label>
             <label className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-              <span className="font-bold">Midnight Dark Mode (X Style)</span>
+              <span className="font-bold">Midnight Dark Mode</span>
               <input type="radio" name="theme" value="midnight" checked={theme === "midnight"} onChange={() => setTheme("midnight")} className="w-5 h-5 accent-sky-600" />
             </label>
             <label className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
