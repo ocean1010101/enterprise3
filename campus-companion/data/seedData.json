@@ -1,0 +1,25 @@
+{
+  "events": [
+    { "id": 1, "title": "Volleyball Tournament", "date": "May 15th", "time": "14:00", "location": "Sports Hall", "category": "Sports" },
+    { "id": 2, "title": "Football Tryouts", "date": "May 16th", "time": "16:00", "location": "Sports Pitch", "category": "Sports" },
+    { "id": 3, "title": "Badminton Doubles", "date": "May 17th", "time": "18:00", "location": "Sports Hall", "category": "Sports" },
+    { "id": 4, "title": "Basketball 3v3", "date": "May 18th", "time": "17:00", "location": "Indoor Gym", "category": "Sports" },
+    { "id": 5, "title": "Archery Club Meet", "date": "May 19th", "time": "15:00", "location": "Green Space", "category": "Sports" },
+    { "id": 6, "title": "Study Group: Computing", "date": "May 20th", "time": "13:00", "location": "Library Room 4", "category": "Academic" },
+    { "id": 7, "title": "Study Group: Business", "date": "May 21st", "time": "14:00", "location": "Main Hub", "category": "Academic" }
+  ],
+  "canteen": {
+    "basicMenu": [
+      { "name": "Classic Beef Burger & Fries", "price": "€6.50", "allergens": "Gluten, Dairy" },
+      { "name": "Vegan Falafel Wrap", "price": "€5.00", "allergens": "Gluten, Sesame" },
+      { "name": "Chicken Caesar Salad", "price": "€5.50", "allergens": "Dairy, Egg, Gluten" },
+      { "name": "Soup of the Day w/ Bread", "price": "€3.50", "allergens": "Varies" }
+    ],
+    "specials": [
+      { "name": "Tuesday Special: Chicken Tikka Masala", "price": "€7.00", "allergens": "Dairy" },
+      { "name": "Dessert: Warm Apple Crumble", "price": "€3.00", "allergens": "Gluten, Dairy" }
+    ]
+  },
+  "courses": ["Computing", "Business", "Finance", "Biology", "Chemistry"],
+  "groups": ["A", "B", "C", "D"]
+}
