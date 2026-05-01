@@ -21,41 +21,44 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.className} bg-white text-slate-800 min-h-screen flex flex-col transition-colors duration-300`}>
         <SettingsProvider>
+          {/* ACCESSIBILITY: Incredible job adding this skip link! */}
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[100] focus:p-4 focus:bg-sky-900 focus:text-white focus:font-bold focus:outline-none focus:ring-4 focus:ring-sky-400">
             Skip to main content
           </a>
 
-          <nav className="bg-sky-200 text-slate-900 p-4 shadow-sm sticky top-0 z-50 transition-colors duration-300">
+          {/* ACCESSIBILITY: Added aria-label for screen readers */}
+          <nav aria-label="Main navigation" className="bg-sky-200 text-slate-900 p-4 shadow-sm sticky top-0 z-50 transition-colors duration-300">
             <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-              <Link href="/" className="text-4xl font-extrabold tracking-wide focus:ring-2 focus:ring-slate-900 rounded px-2">
+              <Link href="/" className="text-4xl font-extrabold tracking-wide focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-2 py-1">
                 Campus Companion
               </Link>
               <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                <Link href="/timetable" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/timetable" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Calendar size={18} aria-hidden="true" /> <span className="hidden lg:inline">Timetable</span>
                 </Link>
-                <Link href="/canteen" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/canteen" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Coffee size={18} aria-hidden="true" /> <span className="hidden lg:inline">Canteen</span>
                 </Link>
-                <Link href="/map" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/map" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Map size={18} aria-hidden="true" /> <span className="hidden lg:inline">Map</span>
                 </Link>
-                <Link href="/helpdesk" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/helpdesk" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <LifeBuoy size={18} aria-hidden="true" /> <span className="hidden lg:inline">Helpdesk</span>
                 </Link>
-                <Link href="/lost-found" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/lost-found" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Search size={18} aria-hidden="true" /> <span className="hidden lg:inline">Lost & Found</span>
                 </Link>
-                <Link href="/events" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/events" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Ticket size={18} aria-hidden="true" /> <span className="hidden lg:inline">Events</span>
                 </Link>
-                <Link href="/settings" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:ring-2 focus:ring-slate-900 rounded px-3 py-2 font-medium">
+                <Link href="/settings" className="flex items-center gap-2 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-sky-200 rounded px-3 py-2 font-medium">
                   <Settings size={18} aria-hidden="true" /> <span className="hidden lg:inline">Settings</span>
                 </Link>
               </div>
             </div>
           </nav>
 
+          {/* ACCESSIBILITY: Main content wrapper handles the skip link focus */}
           <main id="main-content" className="flex-grow w-full bg-slate-50 outline-none transition-colors duration-300" tabIndex={-1}>
             {children}
           </main>
@@ -70,12 +73,13 @@ export default function RootLayout({
               <div>
                 <h3 className="font-bold text-lg mb-4 text-slate-900">Site Map</h3>
                 <ul className="grid grid-cols-2 gap-2">
-                  <li><Link href="/" className="hover:underline focus:ring-2 rounded outline-none">Home</Link></li>
-                  <li><Link href="/timetable" className="hover:underline focus:ring-2 rounded outline-none">Timetable</Link></li>
-                  <li><Link href="/canteen" className="hover:underline focus:ring-2 rounded outline-none">Canteen</Link></li>
-                  <li><Link href="/map" className="hover:underline focus:ring-2 rounded outline-none">Campus Map</Link></li>
-                  <li><Link href="/events" className="hover:underline focus:ring-2 rounded outline-none">Events</Link></li>
-                  <li><Link href="/settings" className="hover:underline focus:ring-2 rounded outline-none">Settings</Link></li>
+                  {/* ACCESSIBILITY: Standardized focus rings */}
+                  <li><Link href="/" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Home</Link></li>
+                  <li><Link href="/timetable" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Timetable</Link></li>
+                  <li><Link href="/canteen" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Canteen</Link></li>
+                  <li><Link href="/map" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Campus Map</Link></li>
+                  <li><Link href="/events" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Events</Link></li>
+                  <li><Link href="/settings" className="hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded px-1">Settings</Link></li>
                 </ul>
               </div>
               <div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Calendar, Clock, MapPin, BookOpen, Coffee } from "lucide-react";
+import { useSettings } from "../SettingsProvider"; // Added import
 
 type DayType = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
 type GroupType = "A" | "B" | "C" | "D";
@@ -165,13 +166,19 @@ export default function TimetablePage() {
   const [group, setGroup] = useState<GroupType>("A");
   const [day, setDay] = useState<DayType>("Monday");
 
+  // ACCESSIBILITY: Pulls in the reduced motion preference
+  const { reducedMotion } = useSettings();
+
   const currentSchedule = scheduleData[course]?.[group]?.[day] || [];
+
+  // ACCESSIBILITY: Disable hover transitions if reduced motion is true
+  const animTransition = reducedMotion ? "" : "transition-shadow";
 
   return (
     <div className="max-w-4xl mx-auto p-6 my-8 space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-sky-800 flex items-center justify-center gap-3">
-          <Calendar size={36} /> My Timetable
+          <Calendar size={36} aria-hidden="true" /> My Timetable
         </h1>
       </div>
       
@@ -179,11 +186,13 @@ export default function TimetablePage() {
       <div className="flex flex-col md:flex-row gap-4 justify-center bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
         
         <div className="flex flex-col w-full md:w-1/3">
-          <label className="text-sm font-bold text-slate-700 mb-1">Select Course</label>
+          {/* ACCESSIBILITY: explicitly linking the label to the select dropdown ID */}
+          <label htmlFor="course-select" className="text-sm font-bold text-slate-700 mb-1">Select Course</label>
           <select 
+            id="course-select"
             value={course} 
             onChange={(e) => setCourse(e.target.value as CourseType)}
-            className="p-3 border border-slate-300 rounded-lg bg-white focus:ring-2 focus:ring-sky-500 outline-none shadow-sm"
+            className="p-3 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 shadow-sm"
           >
             <option value="Computing">Computing</option>
             <option value="Business">Business</option>
@@ -194,11 +203,13 @@ export default function TimetablePage() {
         </div>
 
         <div className="flex flex-col w-full md:w-1/3">
-          <label className="text-sm font-bold text-slate-700 mb-1">Select Group</label>
+          {/* ACCESSIBILITY: explicitly linking the label to the select dropdown ID */}
+          <label htmlFor="group-select" className="text-sm font-bold text-slate-700 mb-1">Select Group</label>
           <select 
+            id="group-select"
             value={group} 
             onChange={(e) => setGroup(e.target.value as GroupType)}
-            className="p-3 border border-slate-300 rounded-lg bg-white focus:ring-2 focus:ring-sky-500 outline-none shadow-sm"
+            className="p-3 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 shadow-sm"
           >
             <option value="A">Group A</option>
             <option value="B">Group B</option>
@@ -208,11 +219,13 @@ export default function TimetablePage() {
         </div>
 
         <div className="flex flex-col w-full md:w-1/3">
-          <label className="text-sm font-bold text-slate-700 mb-1">Select Day</label>
+          {/* ACCESSIBILITY: explicitly linking the label to the select dropdown ID */}
+          <label htmlFor="day-select" className="text-sm font-bold text-slate-700 mb-1">Select Day</label>
           <select 
+            id="day-select"
             value={day} 
             onChange={(e) => setDay(e.target.value as DayType)}
-            className="p-3 border border-slate-300 rounded-lg bg-white focus:ring-2 focus:ring-sky-500 outline-none shadow-sm"
+            className="p-3 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 shadow-sm"
           >
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
@@ -225,25 +238,25 @@ export default function TimetablePage() {
       </div>
 
       {/* SCHEDULE LIST DISPLAY */}
-      <div className="space-y-4">
+      <div className="space-y-4" aria-live="polite">
         {currentSchedule.length > 0 ? (
           currentSchedule.map((classData: any, index: number) => (
-            <div key={index} className="flex flex-col md:flex-row gap-4 p-5 border-l-4 border-sky-500 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+            <div key={index} className={`flex flex-col md:flex-row gap-4 p-5 border-l-4 border-sky-500 rounded-lg bg-white shadow-sm hover:shadow-md ${animTransition}`}>
               <div className="md:w-48 font-bold text-sky-700 flex items-center gap-2">
-                <Clock size={18} /> {classData.time}
+                <Clock size={18} aria-hidden="true" /> {classData.time}
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-slate-800">{classData.subject}</h3>
                 <div className="flex gap-4 mt-2 text-slate-600 text-sm">
-                  <span className="flex items-center gap-1"><MapPin size={16} /> {classData.room}</span>
-                  <span className="flex items-center gap-1"><BookOpen size={16} /> {classData.type}</span>
+                  <span className="flex items-center gap-1"><MapPin size={16} aria-hidden="true" /> {classData.room}</span>
+                  <span className="flex items-center gap-1"><BookOpen size={16} aria-hidden="true" /> {classData.type}</span>
                 </div>
               </div>
             </div>
           ))
         ) : (
           <div className="text-center p-12 bg-white rounded-xl border-2 border-dashed border-slate-200">
-            <Coffee size={48} className="mx-auto text-slate-300 mb-4" />
+            <Coffee size={48} aria-hidden="true" className="mx-auto text-slate-300 mb-4" />
             <h3 className="text-xl font-bold text-slate-700">No classes scheduled!</h3>
             <p className="text-slate-500 mt-2">Enjoy your free time on {day}, or catch up on some study in the Library.</p>
           </div>

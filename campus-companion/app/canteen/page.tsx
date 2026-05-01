@@ -24,9 +24,11 @@ export default function Canteen() {
         
         <Link 
           href="/map" 
-          className="inline-flex items-center justify-center gap-2 bg-sky-500 text-white px-6 py-2 rounded-full font-bold shadow-sm hover:bg-sky-600 transition-colors focus:ring-4 focus:ring-sky-300 outline-none"
+          // ACCESSIBILITY: Standardized focus rings for keyboard navigation
+          className="inline-flex items-center justify-center gap-2 bg-sky-500 text-white px-6 py-2 rounded-full font-bold shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
         >
-          <MapPin size={18} /> Open Monday - Friday | 08:00 AM - 06:00 PM (View on Map)
+          {/* ACCESSIBILITY: Hid icon from screen readers */}
+          <MapPin size={18} aria-hidden="true" /> Open Monday - Friday | 08:00 AM - 06:00 PM (View on Map)
         </Link>
       </div>
 
