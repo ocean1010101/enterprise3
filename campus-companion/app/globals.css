@@ -79,3 +79,10 @@ body {
 .theme-midnight .text-purple-600, .theme-contrast .text-purple-600 { color: #c084fc !important; }
 .theme-midnight .text-orange-500, .theme-contrast .text-orange-500 { color: #fb923c !important; }
 .theme-midnight .text-sky-600, .theme-contrast .text-sky-600 { color: #38bdf8 !important; }
+
+/* --- GLOBAL ACCESSIBILITY SETTINGS --- */
+.reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}

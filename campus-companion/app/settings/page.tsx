@@ -3,7 +3,8 @@ import { useSettings } from "../SettingsProvider";
 import { Settings, Eye, Type } from "lucide-react";
 
 export default function SettingsPage() {
-  const { theme, setTheme, textSize, setTextSize } = useSettings();
+  // Added reducedMotion and setReducedMotion here
+  const { theme, setTheme, textSize, setTextSize, reducedMotion, setReducedMotion } = useSettings();
 
   return (
     <div className="max-w-4xl mx-auto p-6 my-8">
@@ -16,11 +17,11 @@ export default function SettingsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Appearance Settings */}
-        <div className="bg-white p-8 rounded-xl shadow-sm border border-sky-100">
+        <div className="bg-white p-8 rounded-xl shadow-sm border border-sky-100 flex flex-col">
           <h2 className="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2 border-b border-sky-100 pb-2">
             <Eye size={24} /> Appearance
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-4 flex-grow">
             <label className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
               <span className="font-bold">Standard Light Mode</span>
               <input type="radio" name="theme" value="light" checked={theme === "light"} onChange={() => setTheme("light")} className="w-5 h-5 accent-sky-600" />
@@ -33,6 +34,29 @@ export default function SettingsPage() {
               <span className="font-bold">High Contrast Mode</span>
               <input type="radio" name="theme" value="contrast" checked={theme === "contrast"} onChange={() => setTheme("contrast")} className="w-5 h-5 accent-sky-600" />
             </label>
+            
+            {/* --- NEW: REDUCED MOTION TOGGLE --- */}
+            <div className="mt-6 pt-6 border-t border-sky-100">
+              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200">
+                <div className="pr-4">
+                  <h3 className="font-bold text-slate-800">Reduced Motion</h3>
+                  <p className="text-sm text-slate-600 mt-1">Disable UI animations and pulsing effects globally.</p>
+                </div>
+                
+                <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                  <input 
+                    type="checkbox" 
+                    className="sr-only peer" 
+                    checked={reducedMotion}
+                    onChange={() => setReducedMotion(!reducedMotion)}
+                    aria-label="Toggle reduced motion"
+                  />
+                  <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-500 peer-focus:ring-offset-2 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sky-600"></div>
+                </label>
+              </div>
+            </div>
+            {/* --------------------------------- */}
+
           </div>
         </div>
 

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function initDatabase() {
-    console.log("--- Boreal University Database Initialization ---");
+    console.log("--- Campus Companion Database Initialization ---");
 
     // 1. Get the current folder path
     const currentDir = process.cwd();

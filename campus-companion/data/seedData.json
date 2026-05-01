@@ -1,12 +1,25 @@
 {
   "events": [
-    { "id": 1, "title": "Volleyball Tournament", "date": "May 15th", "time": "14:00", "location": "Sports Hall", "category": "Sports" },
-    { "id": 2, "title": "Football Tryouts", "date": "May 16th", "time": "16:00", "location": "Sports Pitch", "category": "Sports" },
-    { "id": 3, "title": "Badminton Doubles", "date": "May 17th", "time": "18:00", "location": "Sports Hall", "category": "Sports" },
-    { "id": 4, "title": "Basketball 3v3", "date": "May 18th", "time": "17:00", "location": "Indoor Gym", "category": "Sports" },
-    { "id": 5, "title": "Archery Club Meet", "date": "May 19th", "time": "15:00", "location": "Green Space", "category": "Sports" },
-    { "id": 6, "title": "Study Group: Computing", "date": "May 20th", "time": "13:00", "location": "Library Room 4", "category": "Academic" },
-    { "id": 7, "title": "Study Group: Business", "date": "May 21st", "time": "14:00", "location": "Main Hub", "category": "Academic" }
+    { "id": 1, "title": "Volleyball Tournament", "date": "May 15th", "time": "14:00", "location": "Sports Hall", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 2, "title": "Football Tryouts", "date": "May 16th", "time": "16:00", "location": "Sports Pitch", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 3, "title": "Badminton Doubles", "date": "May 17th", "time": "18:00", "location": "Sports Hall", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 4, "title": "Basketball 3v3", "date": "May 18th", "time": "17:00", "location": "Indoor Gym", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 5, "title": "Archery Club Meet", "date": "May 19th", "time": "15:00", "location": "Green Space", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 6, "title": "Study Group: Computing", "date": "May 20th", "time": "13:00", "location": "Library Room 4", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 7, "title": "Study Group: Business", "date": "May 21st", "time": "14:00", "location": "Main Hub", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 8, "title": "Python Workshop", "date": "May 22nd", "time": "10:00", "location": "IT Lab 2", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 9, "title": "Career Fair", "date": "May 23rd", "time": "11:00", "location": "Great Hall", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 10, "title": "Yoga in the Park", "date": "May 24th", "time": "09:00", "location": "South Lawn", "category": "Wellness", "tags": [0, 0, 1] },
+    { "id": 11, "title": "Meditation Session", "date": "May 25th", "time": "17:00", "location": "Quiet Room", "category": "Wellness", "tags": [0, 0, 1] },
+    { "id": 12, "title": "Chess Club Night", "date": "May 26th", "time": "19:00", "location": "Student Union", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 13, "title": "Hiking Trip", "date": "May 27th", "time": "08:00", "location": "Meet at North Gate", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 14, "title": "Graphic Design Talk", "date": "May 28th", "time": "14:00", "location": "Arts Block", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 15, "title": "Swimming Gala", "date": "May 29th", "time": "18:00", "location": "Pool Complex", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 16, "title": "Wellness Brunch", "date": "May 30th", "time": "11:00", "location": "Canteen Annex", "category": "Wellness", "tags": [0, 0, 1] },
+    { "id": 17, "title": "Startup Pitch Night", "date": "June 1st", "time": "19:00", "location": "Innovation Hub", "category": "Academic", "tags": [0, 1, 0] },
+    { "id": 18, "title": "Tennis Open", "date": "June 2nd", "time": "15:00", "location": "Campus Courts", "category": "Sports", "tags": [1, 0, 0] },
+    { "id": 19, "title": "Mental Health Seminar", "date": "June 3rd", "time": "14:00", "location": "Auditorium", "category": "Wellness", "tags": [0, 0, 1] },
+    { "id": 20, "title": "Table Tennis", "date": "June 4th", "time": "10:00", "location": "Sports Hall", "category": "Sports", "tags": [1, 0, 0] }
   ],
   "canteen": {
     "basicMenu": [

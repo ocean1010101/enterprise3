@@ -6,6 +6,8 @@ type SettingsContextType = {
   setTheme: (t: string) => void;
   textSize: number;
   setTextSize: (s: number) => void;
+  reducedMotion: boolean;
+  setReducedMotion: (val: boolean) => void;
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
@@ -13,6 +15,7 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("light");
   const [textSize, setTextSize] = useState(16); // Default 16px
+  const [reducedMotion, setReducedMotion] = useState(false); // Default off
 
   useEffect(() => {
     // Apply theme classes to the body
@@ -25,8 +28,17 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.style.fontSize = `${textSize}px`;
   }, [textSize]);
 
+  // NEW: Apply reduced motion globally
+  useEffect(() => {
+    if (reducedMotion) {
+      document.body.classList.add("reduce-motion");
+    } else {
+      document.body.classList.remove("reduce-motion");
+    }
+  }, [reducedMotion]);
+
   return (
-    <SettingsContext.Provider value={{ theme, setTheme, textSize, setTextSize }}>
+    <SettingsContext.Provider value={{ theme, setTheme, textSize, setTextSize, reducedMotion, setReducedMotion }}>
       {children}
     </SettingsContext.Provider>
   );
