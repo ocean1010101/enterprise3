@@ -1,3 +1,4 @@
+**Component 2**
 **Campus Companion Web Application**
 
 
@@ -17,9 +18,6 @@ Chosen Stack:
 
 &#x20;- PNPM
 
-
-
-
 How to run locally:
 
 Cloned GIT Repository - "git clone (repo link)"
@@ -35,8 +33,7 @@ I ran "pnpm dev"
 &#x20;> copy and paste localhost link into your browser to see the result of your web app.
 
 
-
-**Build command and Setup**
+**Component 3**
 
 The application is deployed through Netlify. 
 It uses continous deployment thats connected to my github repository. 
